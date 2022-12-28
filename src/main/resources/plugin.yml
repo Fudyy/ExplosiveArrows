@@ -7,5 +7,5 @@ description: Explosive bow for minecraft.
 website: twitter.com/_Fudy
 commands:
   getexplosivebow:
-    usage: /getexplosivebow
+    usage: /getexplosivebow <Player>
     description: Gives you an explosive bow.

@@ -1,9 +1,10 @@
-package me.fudy.explosivebow.commands;
+package me.fudy.explosivebow.Commands;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -25,12 +26,29 @@ public class GetBowCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!(sender instanceof Player)){
-            Bukkit.getServer().broadcast(Component.text("This command can only be used by a player.").color(TextColor.color(255,0,0)));
-            return false;
+        Player player = null;
+
+        //Verify if the console is sending the command
+        if (!(sender instanceof Player) && args.length < 1) {
+            sender.sendMessage(ChatColor.RED + "Specify a player to give the bow with: /getexplosivebow <Player>.");
+            return true;
+        }
+        if (!(sender instanceof Player) && args.length > 0) player = Bukkit.getServer().getPlayer(args[0]);
+
+        //Logic if a player is sending the command
+        if ((sender instanceof Player) && args.length < 1){
+                player = ((Player) sender).getPlayer();
+        }
+        if ((sender instanceof Player) && args.length > 0){
+            player = Bukkit.getServer().getPlayer(args[0]);
         }
 
-        Player player = (Player) sender;
+        //Player verification
+        if (player == null || !player.isOnline()) {
+            sender.sendMessage(ChatColor.RED + "The specified player is not online!");
+            return true;
+        }
+
         ItemStack bow = new ItemStack(Material.BOW);
         ItemMeta bowmeta = bow.getItemMeta();
 

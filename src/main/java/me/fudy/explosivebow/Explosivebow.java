@@ -1,6 +1,6 @@
 package me.fudy.explosivebow;
 
-import me.fudy.explosivebow.Commands.GetBowCommand;
+import me.fudy.explosivebow.commands.GetBowCommand;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;

@@ -1,0 +1,7 @@
+name: Explosivebow
+version: '${project.version}'
+main: me.fudy.explosivebow.Explosivebow
+api-version: 1.19
+authors: [ Fudy ]
+description: Explosive bow for minecraft.
+website: twitter.com/_Fudy

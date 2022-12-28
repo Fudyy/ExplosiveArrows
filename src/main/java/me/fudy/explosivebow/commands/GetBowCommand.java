@@ -1,6 +1,5 @@
 package me.fudy.explosivebow.commands;
 
-import me.fudy.explosivebow.Explosivebow;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;

@@ -4,11 +4,16 @@ import com.destroystokyo.paper.ParticleBuilder;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.persistence.PersistentDataType;
+
+import javax.xml.parsers.SAXParser;
 
 public class ArrowLandEvent implements Listener {
     private final NamespacedKey bowkey;
@@ -41,5 +46,7 @@ public class ArrowLandEvent implements Listener {
         if(!PDC.equals("explosivebow") || PDC == null) return;
 
         event.getProjectile().getPersistentDataContainer().set(arrowkey, PersistentDataType.STRING, "explosivearrow");
+        Arrow arrow = (Arrow) event.getProjectile();
+        arrow.setCritical(false);
     }
 }

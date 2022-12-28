@@ -2,6 +2,7 @@ package me.fudy.explosivebow.events;
 
 import com.destroystokyo.paper.ParticleBuilder;
 import me.fudy.explosivebow.Explosivebow;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
@@ -40,6 +41,7 @@ public class ArrowHandler implements Listener {
         particles.location(location);
         particles.spawn();
         event.getEntity().remove();
+        location.createExplosion(2, false, false);
     }
 
     @EventHandler

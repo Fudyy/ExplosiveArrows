@@ -1,7 +1,7 @@
 package me.fudy.explosivebow;
 
 import me.fudy.explosivebow.commands.GetBowCommand;
-import me.fudy.explosivebow.events.ArrowLandEvent;
+import me.fudy.explosivebow.events.ArrowHandler;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.Bukkit;
@@ -16,7 +16,7 @@ public final class Explosivebow extends JavaPlugin {
         // Plugin startup logic
         Bukkit.getServer().sendMessage(Component.text("[Explosive bow] Explosive arrows have been initialized!").color(TextColor.color(0,255,0)));
         this.getCommand("getexplosivebow").setExecutor(new GetBowCommand(bowkey));
-        this.getServer().getPluginManager().registerEvents(new ArrowLandEvent(bowkey, arrowkey), this);
+        this.getServer().getPluginManager().registerEvents(new ArrowHandler(bowkey, arrowkey, this), this);
     }
 
     @Override

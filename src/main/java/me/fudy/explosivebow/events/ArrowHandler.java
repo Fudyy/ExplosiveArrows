@@ -1,27 +1,28 @@
 package me.fudy.explosivebow.events;
 
 import com.destroystokyo.paper.ParticleBuilder;
+import me.fudy.explosivebow.Explosivebow;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
-import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.scheduler.BukkitRunnable;
 
-import javax.xml.parsers.SAXParser;
-
-public class ArrowLandEvent implements Listener {
+public class ArrowHandler implements Listener {
     private final NamespacedKey bowkey;
     private final NamespacedKey arrowkey;
 
-    public ArrowLandEvent(NamespacedKey bowkey, NamespacedKey arrowkey) {
+    private static Explosivebow plugin;
+
+    public ArrowHandler(NamespacedKey bowkey, NamespacedKey arrowkey, Explosivebow plugin) {
         this.bowkey = bowkey;
         this.arrowkey = arrowkey;
+        this.plugin = plugin;
     }
 
     @EventHandler
@@ -38,6 +39,7 @@ public class ArrowLandEvent implements Listener {
         ParticleBuilder particles = new ParticleBuilder(Particle.CLOUD).count(100);
         particles.location(location);
         particles.spawn();
+        event.getEntity().remove();
     }
 
     @EventHandler
@@ -48,5 +50,17 @@ public class ArrowLandEvent implements Listener {
         event.getProjectile().getPersistentDataContainer().set(arrowkey, PersistentDataType.STRING, "explosivearrow");
         Arrow arrow = (Arrow) event.getProjectile();
         arrow.setCritical(false);
+
+        ParticleBuilder particles = new ParticleBuilder(Particle.CRIT_MAGIC).count(1);
+        new BukkitRunnable(){
+            @Override
+            public void run() {
+                if(arrow.isDead()){
+                    cancel();
+                } else {
+                    particles.location(arrow.getLocation()).spawn();
+                }
+            }
+        }.runTaskTimer(plugin, 0, 0);
     }
 }

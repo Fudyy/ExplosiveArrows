@@ -5,3 +5,7 @@ api-version: 1.19
 authors: [ Fudy ]
 description: Explosive bow for minecraft.
 website: twitter.com/_Fudy
+commands:
+  getexplosivebow:
+    usage: /getexplosivebow
+    description: Gives you an explosive bow.

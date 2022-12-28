@@ -2,6 +2,7 @@ package me.fudy.explosivebow.events;
 
 import com.destroystokyo.paper.ParticleBuilder;
 import me.fudy.explosivebow.Explosivebow;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -13,6 +14,8 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import javax.annotation.Nullable;
 
 public class ArrowHandler implements Listener {
     private final NamespacedKey bowkey;
@@ -29,7 +32,8 @@ public class ArrowHandler implements Listener {
     @EventHandler
     public void onArrowLand(ProjectileHitEvent event){
         String PDC = event.getEntity().getPersistentDataContainer().get(arrowkey, PersistentDataType.STRING);
-        if (!PDC.equals("explosivearrow") || PDC == null) return;
+        if(PDC == null) return;
+        if (!PDC.equals("explosivearrow")) return;
 
         //Get hit location
         Location location = null;
@@ -41,13 +45,14 @@ public class ArrowHandler implements Listener {
         particles.location(location);
         particles.spawn();
         event.getEntity().remove();
-        location.createExplosion(2, false, false);
+        location.createExplosion(0.5F, false, false);
     }
 
     @EventHandler
     public void onArrowShot(EntityShootBowEvent event){
         String PDC = event.getBow().getItemMeta().getPersistentDataContainer().get(bowkey, PersistentDataType.STRING);
-        if(!PDC.equals("explosivebow") || PDC == null) return;
+        if(PDC == null) return;
+        if (!PDC.equals("explosivebow")) return;
 
         event.getProjectile().getPersistentDataContainer().set(arrowkey, PersistentDataType.STRING, "explosivearrow");
         Arrow arrow = (Arrow) event.getProjectile();

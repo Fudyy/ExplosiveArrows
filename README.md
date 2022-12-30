@@ -6,8 +6,8 @@ Personal prototype plugin that adds a special bow that has explosive arrows!
 
 ## Installation
 
-This plugin is meant to work along with [PaperMC](https://papermc.io/), i don't know if is compatible with other plugin platforms like Bukkit or Spigot.
-    
+This plugin is meant to work along with [PaperMC](https://papermc.io/) and **Minecraft 1.19.3**, i don't know if is compatible with other plugin platforms like Bukkit or Spigot.
+
 ## FAQ
 
 #### Will you add more configs to the project? like changing the particles of the arrows.

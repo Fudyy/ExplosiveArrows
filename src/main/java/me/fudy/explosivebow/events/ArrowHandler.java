@@ -2,8 +2,6 @@ package me.fudy.explosivebow.events;
 
 import com.destroystokyo.paper.ParticleBuilder;
 import me.fudy.explosivebow.Explosivebow;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
@@ -14,8 +12,6 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import javax.annotation.Nullable;
 
 public class ArrowHandler implements Listener {
     private final NamespacedKey bowkey;

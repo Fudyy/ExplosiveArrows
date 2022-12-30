@@ -41,7 +41,6 @@
                         </goals>
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <outputFile>C:\Users\carlo\Documents\Minecraft servers\Paper 1.19.3\plugins\explosivearrows.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>
